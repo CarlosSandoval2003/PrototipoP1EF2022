@@ -1,15 +1,15 @@
 # depslib dependency file v1.0
-1655396449 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\alumnos.cpp
+1655398510 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\alumnos.cpp
 	"alumnos.h"
 
-1655396449 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\alumnos.h
+1655398510 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\alumnos.h
 
-1655396462 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\reportes.cpp
+1655398510 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\reportes.cpp
 	"reportes.h"
 
-1655396462 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\reportes.h
+1655398510 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\reportes.h
 
-1655397995 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\main.cpp
+1655398510 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\main.cpp
 	<iostream>
 	<menus.h>
 	<ctime>
@@ -18,14 +18,14 @@
 	<iomanip>
 	<cstdlib>
 
-1655397932 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\menus.h
+1655398510 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\menus.h
 
-1655396421 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\usuarios.cpp
+1655398510 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\usuarios.cpp
 	"usuarios.h"
 
-1655396421 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\usuarios.h
+1655398510 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\usuarios.h
 
-1655398162 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\menus.cpp
+1655398510 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\menus.cpp
 	<iostream>
 	<conio.h>
 	"menus.h"
