@@ -7,6 +7,7 @@ class reportes
     public:
         reportes();
         virtual ~reportes();
+        menuInformes();
 
     protected:
 

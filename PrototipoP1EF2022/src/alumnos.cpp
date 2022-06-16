@@ -802,3 +802,115 @@ if ( empleado.obtenerNumeroId() != 0 ) {
          << " aun no existe" << endl;
 
 }
+
+void alumnos::mostrarLinea4( ostream &salida, const alumnos &registro )
+{
+   salida << left << setw( 10 ) << registro.obtenerNumeroId()
+          << setw( 15 ) << registro.obtenerApellido().data()
+          << setw( 16 ) << registro.obtenerNombre().data()
+          << setw( 17 ) << registro.obtenerSede().data()
+          << setw( 17 ) << registro.obtenerFacultad().data()
+          << setw( 17 ) << registro.obtenerCarrera().data()
+          << setw( 12 ) << registro.obtenerSolvencia().data()<<endl;
+
+} // fin de la función mostrarLinea
+
+void alumnos::mostrarLinea5( ostream &salida, const alumnos &registro )
+{
+    int note1 = registro.obtenerNota1();
+    int note2 = registro.obtenerNota2();
+    int note3 = registro.obtenerNota3();
+    int promedio = (note1+note2+note3)/3;
+   salida << left << setw( 10 ) << registro.obtenerNumeroId()
+          << setw( 15 ) << registro.obtenerApellido().data()
+          << setw( 16 ) << registro.obtenerNombre().data()
+          << setw( 17 ) << registro.obtenerFacultad().data()
+          << setw( 17 ) << registro.obtenerCarrera().data()
+          << setw( 17 ) << registro.obtenerCurso1().data()
+          << setw( 10 ) << registro.obtenerNota1()
+          << setw( 17 ) << registro.obtenerCurso2().data()
+          << setw( 10 ) << registro.obtenerNota2()
+          << setw( 17 ) << registro.obtenerCurso3().data()
+          << setw( 10 ) << registro.obtenerNota3()
+          << setw( 10 ) << promedio <<endl;
+
+} // fin de la función mostrarLinea
+
+void alumnos::imprimirRegistro2( fstream &leerDeArchivo )
+{
+   // crear archivo de texto
+   ofstream archivoImprimirSalida( "InformeSolvencia.txt", ios::out );
+
+   // salir del programa si ofstream no puede crear el archivo
+   if ( !archivoImprimirSalida ) {
+      cerr << "No se pudo crear el archivo." << endl;
+      exit( 1 );
+
+   } // fin de instrucción if
+
+   archivoImprimirSalida << left << setw( 10 ) << "ID" << setw( 16 )
+       << "Apellido" << setw( 17 ) << "Nombre"
+       <<setw( 18 )<<"Sede"<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 12 )<<"Solvencia"<<endl;
+
+   // colocar el apuntador de posición de archivo al principio del archivo de registros
+   leerDeArchivo.seekg( 0 );
+
+   // leer el primer registro del archivo de registros
+   alumnos player;
+   leerDeArchivo.read( reinterpret_cast< char * >( &player ),
+      sizeof( alumnos ) );
+
+   // copiar todos los registros del archivo de registros en el archivo de texto
+   while ( !leerDeArchivo.eof() ) {
+
+      // escribir un registro individual en el archivo de texto
+      if ( player.obtenerNumeroId() != 0 )
+         mostrarLinea4( archivoImprimirSalida, player );
+
+      // leer siguiente registro del archivo de registros
+      leerDeArchivo.read( reinterpret_cast< char * >( &player),
+         sizeof( alumnos ) );
+
+   } // fin de instrucción while
+
+}
+
+void alumnos::imprimirRegistro3( fstream &leerDeArchivo )
+{
+   // crear archivo de texto
+   ofstream archivoImprimirSalida( "InformeDeNotas.txt", ios::out );
+
+   // salir del programa si ofstream no puede crear el archivo
+   if ( !archivoImprimirSalida ) {
+      cerr << "No se pudo crear el archivo." << endl;
+      exit( 1 );
+
+   } // fin de instrucción if
+
+   archivoImprimirSalida << left << setw( 10 ) << "ID" << setw( 16 )
+       << "Apellido" << setw( 17 ) << "Nombre"
+       <<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 12 )<<"Curso 1"<<setw( 10 )<<"Nota"
+       <<setw( 18 )<<"Curso 2"<<setw( 10 )<<"Nota"<<setw( 18 )<<"Curso 3"<<setw( 10 )<<"Nota"<<setw(10)<<"Promedio"<<endl;
+
+   // colocar el apuntador de posición de archivo al principio del archivo de registros
+   leerDeArchivo.seekg( 0 );
+
+   // leer el primer registro del archivo de registros
+   alumnos player;
+   leerDeArchivo.read( reinterpret_cast< char * >( &player ),
+      sizeof( alumnos ) );
+
+   // copiar todos los registros del archivo de registros en el archivo de texto
+   while ( !leerDeArchivo.eof() ) {
+
+      // escribir un registro individual en el archivo de texto
+      if ( player.obtenerNumeroId() != 0 )
+         mostrarLinea5( archivoImprimirSalida, player );
+
+      // leer siguiente registro del archivo de registros
+      leerDeArchivo.read( reinterpret_cast< char * >( &player),
+         sizeof( alumnos ) );
+
+   } // fin de instrucción while
+
+}

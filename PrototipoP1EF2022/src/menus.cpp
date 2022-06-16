@@ -35,6 +35,7 @@ menus::menus()
 
 menus::menuGeneral()
 {
+    reportes informe;
     menus menuG;
 int choice;
 	char x;
@@ -67,7 +68,7 @@ int choice;
         menuProcesos();
 		break;
 	case 3:
-        menuInformes();
+        informe.menuInformes();
 		break;
 	case 4:
         break;
@@ -188,48 +189,5 @@ menus::menuProcesos()
     }while(choice!= 3);
 }
 
-menus::menuInformes()
-{
-    //Creacion de un objeto de la clase alumnos
-    alumnos a1;
-    int choice;
-	char x;
-	do
-    {
-	system("cls");
 
-	cout<<"\t\t\t"<<endl;
-	cout<<"\t\t\t    Informes/Reportes    "<<endl;
-	cout<<"\t\t\t"<<endl;
-	cout<<"\t\t\t 1. Generacion Informe Alumnos"<<endl;
-	cout<<"\t\t\t 2. Generacion Informe Solvencia"<<endl;
-    cout<<"\t\t\t 3. Generacion Acta de Notas"<<endl;
-	cout<<"\t\t\t 4. Regresar"<<endl;
-
-	cout<<"\t\t\t"<<endl;
-	cout<<"\t\t\tOpcion a escoger:[1/2/3/4]"<<endl;
-	cout<<"\t\t\t"<<endl;
-	cout<<"Ingresa una Opcion: ";
-    cin>>choice;
-
-    switch(choice)
-    {
-    case 1:
-        cout<<"Informe Alumnos"<<endl;
-		break;
-	case 2:
-	    cout<<"Informe Solvencia"<<endl;
-		break;
-	case 3:
-	    cout<<"Acta de Notas"<<endl;
-		break;
-	case 4:
-	        cout<<"Presione Enter para confirmar"<<endl;
-		break;
-	default:
-		cout<<"\n\t\t\t Opcion invalida...Por favor prueba otra vez..";
-	}
-    getch();
-    }while(choice!= 4);
-}
 

@@ -77,12 +77,16 @@ class alumnos
         int obtenerNota3() const;
 
         void imprimirRegistro( fstream& );
+        void imprimirRegistro2( fstream& );
+        void imprimirRegistro3( fstream& );
         void actualizarRegistro( fstream& );
         void nuevoRegistro( fstream& );
         void eliminarRegistro( fstream& );
         void mostrarLinea( ostream&, const alumnos & );
         void mostrarLinea2( ostream&, const alumnos & );
         void mostrarLinea3( ostream&, const alumnos & );
+        void mostrarLinea4( ostream&, const alumnos & );
+        void mostrarLinea5( ostream&, const alumnos & );
         int obtenerId( const char * const );
         void crearArchivoAlumnos();
         void consultarRegistro( fstream& );
