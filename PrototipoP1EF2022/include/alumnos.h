@@ -82,9 +82,8 @@ class alumnos
         void eliminarRegistro( fstream& );
         void mostrarLinea( ostream&, const alumnos & );
         int obtenerId( const char * const );
-        void crearArchivoJugador();
+        void crearArchivoAlumnos();
         void consultarRegistro( fstream& );
-        void busquedaRegistro(fstream&);
         void mostrarLineaPantalla( const alumnos &);
         fstream inicioArchivo();
 

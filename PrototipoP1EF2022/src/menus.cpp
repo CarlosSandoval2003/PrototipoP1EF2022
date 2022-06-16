@@ -86,6 +86,7 @@ menus::menuCatalogos()
 {
     //Creacion de un objeto de la clase alumnos
     alumnos a1;
+    fstream alumnosEntradaSalida = a1.inicioArchivo();
     int choice;
 	char x;
 	do
@@ -110,16 +111,28 @@ menus::menuCatalogos()
     switch(choice)
     {
     case 1:
-        cout<<"Ingresar alumno"<<endl;
+        a1.nuevoRegistro(alumnosEntradaSalida);
+        cout << "" << endl;
+        cout<<"Alumno agregado satisfactoriamente"<<endl;
+        cout << "" << endl;
+        cout << "Presiona enter para continuar" << endl;
 		break;
 	case 2:
-	    cout<<"Modificar Alumno"<<endl;
+	    a1.actualizarRegistro(alumnosEntradaSalida);
+	    cout << "" << endl;
+        cout<<"Alumno modificado satisfactoriamente"<<endl;
+        cout << "" << endl;
+        cout << "Presiona enter para continuar" << endl;
 		break;
 	case 3:
-	    cout<<"Eliminar Alumno"<<endl;
+	    a1.eliminarRegistro(alumnosEntradaSalida);
+        cout << "" << endl;
+        cout << "Presiona enter para continuar" << endl;
 		break;
     case 4:
-	    cout<<"Consulta Alumnos"<<endl;
+	    a1.consultarRegistro(alumnosEntradaSalida);
+	    cout << "" << endl;
+        cout << "Presiona enter para continuar" << endl;
 		break;
 	case 5:
 	        cout<<"Presione Enter para confirmar"<<endl;
@@ -127,6 +140,7 @@ menus::menuCatalogos()
 	default:
 		cout<<"\n\t\t\t Opcion invalida...Por favor prueba otra vez..";
 	}
+	alumnosEntradaSalida.clear(); // reinicializar indicador de fin de archivo
     getch();
     }while(choice!= 5);
 }

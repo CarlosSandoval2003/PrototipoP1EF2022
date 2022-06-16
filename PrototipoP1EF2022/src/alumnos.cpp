@@ -20,15 +20,15 @@ alumnos::alumnos(int valorNumeroId,
    establecerFacultad(valorFacultad);
    establecerCarrera(valorCarrera);
    establecerSolvencia(valorSolvencia);
-   estableceCurso1(valorCurso1);
+   establecerCurso1(valorCurso1);
    establecerNota1(valorNota1);
-   estableceCurso2(valorCurso2);
+   establecerCurso2(valorCurso2);
    establecerNota2(valorNota2);
-   estableceCurso3(valorCurso3);
+   establecerCurso3(valorCurso3);
    establecerNota3(valorNota3);
 }
 
-int alumnos:obtenerNumeroId() const
+int alumnos::obtenerNumeroId() const
 {
    return numeroId;
 
@@ -197,6 +197,12 @@ void alumnos::establecerNota1( int valorNota1 )
 
 }
 
+string alumnos::obtenerCurso2() const
+{
+   return curso2;
+
+}
+
 void alumnos::establecerCurso2( string curso2String )
 {
    // copiar a lo más 15 caracteres de la cadena en apellido
@@ -219,6 +225,12 @@ int alumnos::obtenerNota2() const
 void alumnos::establecerNota2( int valorNota2 )
 {
    nota2 = valorNota2;
+
+}
+
+string alumnos::obtenerCurso3() const
+{
+   return curso3;
 
 }
 
@@ -249,10 +261,10 @@ void alumnos::establecerNota3( int valorNota3 )
 
 
 
-void jugador::imprimirRegistro( fstream &leerDeArchivo )
+void alumnos::imprimirRegistro( fstream &leerDeArchivo )
 {
    // crear archivo de texto
-   ofstream archivoImprimirSalida( "ReporteJugadores.txt", ios::out );
+   ofstream archivoImprimirSalida( "InformeAlumnos.txt", ios::out );
 
    // salir del programa si ofstream no puede crear el archivo
    if ( !archivoImprimirSalida ) {
@@ -263,15 +275,16 @@ void jugador::imprimirRegistro( fstream &leerDeArchivo )
 
    archivoImprimirSalida << left << setw( 10 ) << "ID" << setw( 16 )
        << "Apellido" << setw( 17 ) << "Nombre"
-       << setw( 10 ) <<"Edad"<<setw( 18 )<<"Equipo"<<setw( 5 )<<"Posicion"<<endl;
+       <<setw( 18 )<<"Sede"<<setw( 18 )<<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 10 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 10 )<<"Nota"
+       <<setw( 18 )<<"Curso 2"<<setw( 10 )<<"Nota"<<setw( 18 )<<"Curso 3"<<setw( 10 )<<"Nota"<<endl;
 
    // colocar el apuntador de posición de archivo al principio del archivo de registros
    leerDeArchivo.seekg( 0 );
 
    // leer el primer registro del archivo de registros
-   jugador player;
+   alumnos player;
    leerDeArchivo.read( reinterpret_cast< char * >( &player ),
-      sizeof( jugador ) );
+      sizeof( alumnos ) );
 
    // copiar todos los registros del archivo de registros en el archivo de texto
    while ( !leerDeArchivo.eof() ) {
@@ -282,33 +295,33 @@ void jugador::imprimirRegistro( fstream &leerDeArchivo )
 
       // leer siguiente registro del archivo de registros
       leerDeArchivo.read( reinterpret_cast< char * >( &player),
-         sizeof( jugador ) );
+         sizeof( alumnos ) );
 
    } // fin de instrucción while
 
 }
 
 
-void jugador::actualizarRegistro( fstream &actualizarArchivo )
+void alumnos::actualizarRegistro( fstream &actualizarArchivo )
 {
    // obtener el número de cuenta a actualizar
-   int numeroId = obtenerId( "Escriba el ID del Jugador a modificar" );
+   int numeroId = obtenerId( "Escriba el ID del Alumno a modificar" );
 
    // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
    actualizarArchivo.seekg(
-      ( numeroId - 1 ) * sizeof( jugador ) );
+      ( numeroId - 1 ) * sizeof( alumnos ) );
 
    // leer el primer registro del archivo
-   jugador player;
+   alumnos player;
    actualizarArchivo.read( reinterpret_cast< char * >( &player ),
-      sizeof( jugador ) );
+      sizeof( alumnos ) );
     int choice;
    // actualizar el registro
    if ( player.obtenerNumeroId() != 0 ) {
 
-         cout << left << setw( 10 ) << "ID" << setw( 16 )
-       << "Apellido" << setw( 17 ) << "Nombre"
-       << setw( 10 ) <<"Edad"<<setw( 18 )<<"Equipo"<<setw( 5 )<<"Posicion"<< endl;
+         cout << left << setw( 10 ) << "ID" << setw( 16 )<< "Apellido" << setw( 17 ) << "Nombre"<<setw( 18 )<<"Sede"<<setw( 18 )
+         <<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 10 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 10 )<<"Nota"
+         <<setw( 18 )<<"Curso 2"<<setw( 10 )<<"Nota"<<setw( 18 )<<"Curso 3"<<setw( 10 )<<"Nota"<<endl;
       mostrarLinea( cout, player );
 
 
@@ -317,10 +330,18 @@ void jugador::actualizarRegistro( fstream &actualizarArchivo )
       cout <<"¿Que desea modificar?"<<endl;
 	  cout<<"1. Apellido"<<endl;
 	  cout<<"2. Nombre"<<endl;
-	  cout<<"3. Edad"<<endl;
-	  cout<<"4. Equipo"<<endl;
-	  cout<<"5. Posicion"<<endl;
-	  cout<<"6. Cancelar"<<endl;
+	  cout<<"3. Sede"<<endl;
+	  cout<<"4. Aula"<<endl;
+	  cout<<"5. Facultad"<<endl;
+	  cout<<"6. Carrera"<<endl;
+	  cout<<"7. Solvencia"<<endl;
+	  cout<<"8. Curso 1"<<endl;
+	  cout<<"9. Curso 2"<<endl;
+	  cout<<"10. Curso 3"<<endl;
+	  cout<<"11. Nota Curso 1"<<endl;
+	  cout<<"12. Nota Curso 2"<<endl;
+	  cout<<"13. Nota Curso 3"<<endl;
+	  cout<<"14. Cancelar"<<endl;
 	  cin >> choice;
     switch(choice)
     {
@@ -328,63 +349,100 @@ void jugador::actualizarRegistro( fstream &actualizarArchivo )
             {cout << "Ingrese el nuevo apellido: "<<endl;
             string cambioApellido;
             cin >> cambioApellido;
-
-        // actualizar el saldo del registro
             player.establecerApellido( cambioApellido );}
             break;
         case 2:
             {cout << "Ingrese el nuevo Nombre: "<<endl;
             string cambioNombre;
             cin >> cambioNombre;
-
-      // actualizar el saldo del registro
             player.establecerNombre( cambioNombre );}
             break;
         case 3:
-            {cout << "Ingrese la nueva Edad: "<<endl;
-            int cambioEdad; // cargo o abono
-            cin >> cambioEdad;
-
-      // actualizar el saldo del registro
-            player.establecerEdad(cambioEdad);}
+            {cout << "Ingrese la nueva Sede: "<<endl;
+            string cambioSede;
+            cin >> cambioSede;
+            player.establecerSede( cambioSede );}
             break;
         case 4:
-            {cout << "Ingrese el nombre del nuevo equipo: "<<endl;
-            string cambioEquipo; // cargo o abono
-            cin >> cambioEquipo;
-
-        // actualizar el saldo del registro
-            player.establecerEquipo( cambioEquipo );}
+            {cout << "Ingrese la nueva Aula: "<<endl;
+            string cambioAula;
+            cin >> cambioAula;
+            player.establecerAula( cambioAula );}
             break;
         case 5:
-            {cout << "Ingrese la nueva posicion: "<<endl;
-            string cambioPosicion; // cargo o abono
-            cin >> cambioPosicion;
-
-        // actualizar el saldo del registro
-            player.establecerPosicion( cambioPosicion );}
+            {cout << "Ingrese la nueva Facultad: "<<endl;
+            string cambioFacultad;
+            cin >> cambioFacultad;
+            player.establecerFacultad( cambioFacultad );}
             break;
         case 6:
+            {cout << "Ingrese la nueva Carrera: "<<endl;
+            string cambioCarrera;
+            cin >> cambioCarrera;
+            player.establecerCarrera( cambioCarrera );}
+            break;
+        case 7:
+            {cout << "Ingrese la nueva Solvencia (1=Solvente, 2=Insolvente): "<<endl;
+            int cambioSolvencia;
+            cin >> cambioSolvencia;
+            player.establecerSolvencia(cambioSolvencia);}
+            break;
+        case 8:
+            {cout << "Ingrese el nuevo Curso 1: "<<endl;
+            string cambioCurso1;
+            cin >> cambioCurso1;
+            player.establecerCurso1( cambioCurso1 );}
+            break;
+        case 9:
+            {cout << "Ingrese la nueva Nota del curso 1: "<<endl;
+            int cambioNota1;
+            cin >> cambioNota1;
+            player.establecerNota1(cambioNota1);}
+            break;
+        case 10:
+            {cout << "Ingrese el nuevo Curso 2: "<<endl;
+            string cambioCurso1;
+            cin >> cambioCurso1;
+            player.establecerCurso2( cambioCurso1 );}
+            break;
+        case 11:
+            {cout << "Ingrese la nueva Nota del curso 2: "<<endl;
+            int cambioNota1;
+            cin >> cambioNota1;
+            player.establecerNota2(cambioNota1);}
+            break;
+        case 12:
+            {cout << "Ingrese el nuevo Curso 3: "<<endl;
+            string cambioCurso1;
+            cin >> cambioCurso1;
+            player.establecerCurso3( cambioCurso1 );}
+            break;
+        case 13:
+            {cout << "Ingrese la nueva Nota del curso 3: "<<endl;
+            int cambioNota1;
+            cin >> cambioNota1;
+            player.establecerNota3(cambioNota1);}
+            break;
+        case 14:
             cout << "Modificacion cancelada, empleado sin cambios "<<endl;
             break;
         default:
 		cout<<"\n\t\t\t Opcion invalida...Por favor prueba otra vez..";
 	}
 
-      // actualizar el saldo del registro
-      cout << left << setw( 10 ) << "ID" << setw( 16 )
-       << "Apellido" << setw( 17 ) << "Nombre"
-       << setw( 10 ) <<"Edad"<<setw( 18 )<<"Equipo"<<setw( 5 )<<"Posicion"<< endl;
+      cout << left << setw( 10 ) << "ID" << setw( 16 )<< "Apellido" << setw( 17 ) << "Nombre"<<setw( 18 )<<"Sede"<<setw( 18 )
+         <<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 4 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 4 )<<"Nota"
+         <<setw( 18 )<<"Curso 2"<<setw( 4 )<<"Nota"<<setw( 18 )<<"Curso 3"<<setw( 4 )<<"Nota"<<endl;
       mostrarLinea( cout, player );
 
       // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
       actualizarArchivo.seekp(
-         ( numeroId - 1 ) * sizeof( jugador ) );
+         ( numeroId - 1 ) * sizeof( alumnos ) );
 
       // escribir el registro actualizado sobre el registro anterior en el archivo
       actualizarArchivo.write(
          reinterpret_cast< const char * >( &player ),
-         sizeof( jugador ) );
+         sizeof( alumnos ) );
 
    } // fin de instrucción if
 
@@ -397,28 +455,36 @@ void jugador::actualizarRegistro( fstream &actualizarArchivo )
 }
 
 
-void jugador::nuevoRegistro( fstream &insertarEnArchivo )
+void alumnos::nuevoRegistro( fstream &insertarEnArchivo )
 {
    // obtener el número de cuenta a crear
-   int numeroId = obtenerId( "Ingrese el ID del nuevo jugador: " );
+   int numeroId = obtenerId( "Ingrese el ID del nuevo alumno: " );
 
    // desplazar el apuntador de posición del archivo hasta el registro correcto en el archivo
    insertarEnArchivo.seekg(
-      ( numeroId - 1 ) * sizeof( jugador ) );
+      ( numeroId - 1 ) * sizeof( alumnos ) );
 
    // leer el registro del archivo
-   jugador player;
+   alumnos player;
    insertarEnArchivo.read( reinterpret_cast< char * >( &player ),
-      sizeof( jugador ) );
+      sizeof( alumnos ) );
 
    // crear el registro, si éste no existe ya
    if ( player.obtenerNumeroId() == 0 ) {
 
-      char apellido[ 15 ];
-      char nombre[ 16 ];
-      int edad;
-      char equipo[ 17 ];
-      char posicion[ 4 ];
+        char apellido[ 15 ];
+        char nombre[ 16 ];
+        char sede[ 17 ];
+        char facultad[ 17 ];
+        char carrera[ 17 ];
+        int solvencia;
+        char aula[ 17 ];
+        char curso1[ 17 ];
+        char curso2[ 17 ];
+        char curso3[ 17 ];
+        int nota1;
+        int nota2;
+        int nota3;
 
 
       // el usuario introduce el apellido, primer nombre y saldo
@@ -426,29 +492,52 @@ void jugador::nuevoRegistro( fstream &insertarEnArchivo )
       cin >> setw( 15 ) >> apellido;
       cout << "Escriba el nombre: " << endl;
       cin >> setw( 16 ) >> nombre;
-      cout << "Escriba la edad: "<<endl;
-      cin >> setw( 10 ) >> edad;
-      cout << "Escriba el nombre del equipo: "<<endl;
-      cin >> setw(17)>> equipo;
-      cout << "Escriba la posicion: "<<endl;
-      cin >> setw(5)>> posicion;
+      cout << "Escriba la Sede: "<<endl;
+      cin >> setw(17)>> sede;
+      cout << "Escriba el aula: "<<endl;
+      cin >> setw(17)>> aula;
+      cout << "Escriba la facultad: "<<endl;
+      cin >> setw(17)>> facultad;
+      cout << "Escriba la carrera: "<<endl;
+      cin >> setw(17)>> carrera;
+      cout << "¿Está solvente? 1=Si, 2=No"<<endl;
+      cin >> setw(4)>> solvencia;
+      cout << "Escriba el curso 1: "<<endl;
+      cin >> setw(17)>> curso1;
+      cout << "Escriba la nota del curso 1: "<<endl;
+      cin >> setw(4)>> nota1;
+      cout << "Escriba el curso 2: "<<endl;
+      cin >> setw(17)>> curso2;
+      cout << "Escriba la nota del curso 2: "<<endl;
+      cin >> setw(4)>> nota2;
+      cout << "Escriba el curso 3: "<<endl;
+      cin >> setw(17)>> curso3;
+      cout << "Escriba la nota del curso 3: "<<endl;
+      cin >> setw(4)>> nota3;
 
       // usar valores para llenar los valores de la cuenta
       player.establecerApellido( apellido );
       player.establecerNombre( nombre );
-      player.establecerEdad( edad );
-      player.establecerEquipo( equipo );
-      player.establecerPosicion( posicion );
+      player.establecerSede( sede );
+      player.establecerAula( aula );
+      player.establecerFacultad( facultad );
+      player.establecerCarrera( carrera );
+      player.establecerCurso1( curso1 );
+      player.establecerNota1( nota1 );
+      player.establecerCurso2( curso2 );
+      player.establecerNota2( nota2 );
+      player.establecerCurso3( curso3 );
+      player.establecerNota3( nota3 );
       player.establecerId( numeroId );
 
       // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
       insertarEnArchivo.seekp( ( numeroId - 1 ) *
-         sizeof( jugador ) );
+         sizeof( alumnos ) );
 
       // insertar el registro en el archivo
       insertarEnArchivo.write(
          reinterpret_cast< const char * >( &player ),
-         sizeof( jugador ) );
+         sizeof( alumnos ) );
 
    } // fin de instrucción if
 
@@ -460,57 +549,57 @@ void jugador::nuevoRegistro( fstream &insertarEnArchivo )
 }
 
 
-void jugador::eliminarRegistro( fstream &eliminarDeArchivo )
+void alumnos::eliminarRegistro( fstream &eliminarDeArchivo )
 {
    // obtener número de cuenta a eliminar
-   int numeroId = obtenerId( "Escriba el ID del equipo a eliminar" );
+   int numeroId = obtenerId( "Escriba el ID del alumno a eliminar" );
 
    // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
    eliminarDeArchivo.seekg(
-      ( numeroId - 1 ) * sizeof( jugador ) );
+      ( numeroId - 1 ) * sizeof( alumnos ) );
 
    // leer el registro del archivo
-   jugador player;
+   alumnos player;
    eliminarDeArchivo.read( reinterpret_cast< char * >( &player ),
-      sizeof( jugador ) );
+      sizeof( alumnos ) );
 
    // eliminar el registro, si es que existe en el archivo
    if ( player.obtenerNumeroId() != 0 ) {
-      jugador jugadorEnBlanco;
+      alumnos alumnoEnBlanco;
 
       // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
       eliminarDeArchivo.seekp( ( numeroId - 1 ) *
-         sizeof( jugador ) );
+         sizeof( alumnos ) );
 
       // reemplazar el registro existente con un registro en blanco
       eliminarDeArchivo.write(
-         reinterpret_cast< const char * >( &jugadorEnBlanco ),
-         sizeof( jugador ) );
+         reinterpret_cast< const char * >( &alumnoEnBlanco ),
+         sizeof( alumnos ) );
 
-      cout << "Jugador con ID #" << numeroId << " eliminado.\n";
+      cout << "Alumno con ID #" << numeroId << " eliminado.\n";
 
    } // fin de instrucción if
 
    // mostrar error si el registro no existe
    else
-      cerr << "No existe ningun jugador con el ID #" << numeroId<<endl;
+      cerr << "No existe ningun alumno con el ID #" << numeroId<<endl;
 
 }
 
-void jugador::consultarRegistro( fstream &leerDeArchivo )
+void alumnos::consultarRegistro( fstream &leerDeArchivo )
 {
 
-   cout << left << setw( 10 ) << "ID" << setw( 16 )
-       << "Apellido" << setw( 17 ) << "Nombre"
-       << setw( 10 ) <<"Edad"<<setw( 18 )<<"Equipo"<<setw( 5 )<<"Posicion" << endl;
+   cout << left << setw( 10 ) << "ID" << setw( 16 )<< "Apellido" << setw( 17 ) << "Nombre"<<setw( 18 )<<"Sede"<<setw( 18 )
+         <<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 10 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 10 )<<"Nota 1"
+         <<setw( 18 )<<"Curso 2"<<setw( 10 )<<"Nota 2"<<setw( 18 )<<"Curso 3"<<setw( 10 )<<"Nota 3"<<endl;
 
    // colocar el apuntador de posición de archivo al principio del archivo de registros
    leerDeArchivo.seekg( 0 );
 
    // leer el primer registro del archivo de registros
-   jugador player;
+   alumnos player;
    leerDeArchivo.read( reinterpret_cast< char * >( &player ),
-      sizeof( jugador ) );
+      sizeof( alumnos ) );
 
    // copiar todos los registros del archivo de registros en el archivo de texto
    while ( !leerDeArchivo.eof() ) {
@@ -521,35 +610,51 @@ void jugador::consultarRegistro( fstream &leerDeArchivo )
 
       // leer siguiente registro del archivo de registros
       leerDeArchivo.read( reinterpret_cast< char * >( &player),
-         sizeof( jugador ) );
+         sizeof( alumnos ) );
 
    } // fin de instrucción while
 
 }
 
 
-void jugador::mostrarLinea( ostream &salida, const jugador &registro )
+void alumnos::mostrarLinea( ostream &salida, const alumnos &registro )
 {
    salida << left << setw( 10 ) << registro.obtenerNumeroId()
           << setw( 15 ) << registro.obtenerApellido().data()
           << setw( 16 ) << registro.obtenerNombre().data()
-          << setw( 10 ) << registro.obtenerEdad()
-          << setw( 17 ) << registro.obtenerEquipo().data()
-          << setw( 5 ) << registro.obtenerPosicion().data()<<endl;
+          << setw( 17 ) << registro.obtenerSede().data()
+          << setw( 17 ) << registro.obtenerAula().data()
+          << setw( 17 ) << registro.obtenerFacultad().data()
+          << setw( 17 ) << registro.obtenerCarrera().data()
+          << setw( 10 ) << registro.obtenerSolvencia()
+          << setw( 17 ) << registro.obtenerCurso1().data()
+          << setw( 10 ) << registro.obtenerNota1()
+          << setw( 17 ) << registro.obtenerCurso2().data()
+          << setw( 10 ) << registro.obtenerNota2()
+          << setw( 17 ) << registro.obtenerCurso3().data()
+          << setw( 10 ) << registro.obtenerNota3()<<endl;
 
 } // fin de la función mostrarLinea
-void jugador::mostrarLineaPantalla( const jugador &registro )
+void alumnos::mostrarLineaPantalla( const alumnos &registro )
 {
    cout << left << setw( 10 ) << registro.obtenerNumeroId()
           << setw( 15 ) << registro.obtenerApellido().data()
           << setw( 16 ) << registro.obtenerNombre().data()
-          << setw( 10 ) << registro.obtenerEdad()
-          << setw( 17 ) << registro.obtenerEquipo().data()
-          << setw( 5 ) << registro.obtenerPosicion().data()<<endl;
+          << setw( 17 ) << registro.obtenerSede().data()
+          << setw( 17 ) << registro.obtenerAula().data()
+          << setw( 17 ) << registro.obtenerFacultad().data()
+          << setw( 17 ) << registro.obtenerCarrera().data()
+          << setw( 10 ) << registro.obtenerSolvencia()
+          << setw( 17 ) << registro.obtenerCurso1().data()
+          << setw( 10 ) << registro.obtenerNota1()
+          << setw( 17 ) << registro.obtenerCurso2().data()
+          << setw( 10 ) << registro.obtenerNota2()
+          << setw( 17 ) << registro.obtenerCurso3().data()
+          << setw( 10 ) << registro.obtenerNota3()<<endl;
 } // fin de la función mostrarLineaPantalla
 
 // obtener el valor del número de cuenta del usuario
-int jugador::obtenerId( const char * const indicador )
+int alumnos::obtenerId( const char * const indicador )
 {
    int numeroId;
 
@@ -563,42 +668,42 @@ int jugador::obtenerId( const char * const indicador )
    return numeroId;
 
 } // fin de la función obtenerCuenta
-void jugador::crearArchivoJugador()
+void alumnos::crearArchivoAlumnos()
 {
-    ofstream jugadorSalida( "jugadores.dat", ios::out | ios::binary );
+    ofstream alumnosSalida( "alumnos.dat", ios::out | ios::binary );
    // salir del programa si ofstream no pudo abrir el archivo
-   if ( !jugadorSalida ) {
+   if ( !alumnosSalida ) {
       cerr << "No se pudo abrir el archivo." << endl;
       exit( 1 );
 
    } // fin de instrucción if
 
    // crear DatosCliente sin información
-   jugador jugadorEnBlanco;
+   alumnos alumnoEnBlanco;
 
    // escribir 100 registros en blanco en el archivo
    for ( int i = 0; i < 1000; i++ )
-      jugadorSalida.write(
-         reinterpret_cast< const char * >( &jugadorEnBlanco ),
-         sizeof( jugador ) );
+      alumnosSalida.write(
+         reinterpret_cast< const char * >( &alumnoEnBlanco ),
+         sizeof( alumnos ) );
 }
 
-fstream jugador::inicioArchivo(){
-    jugador player;
-        fstream jugadorEntradaSalida( "jugadores.dat", ios::in | ios::out | ios::binary);
+fstream alumnos::inicioArchivo(){
+    alumnos player;
+        fstream alumnosEntradaSalida( "alumnos.dat", ios::in | ios::out | ios::binary);
 
    // salir del programa si fstream no puede abrir el archivo
-    if ( !jugadorEntradaSalida ) {
+    if ( !alumnosEntradaSalida ) {
       cerr << "No se pudo abrir el archivo." << endl;
-      player.crearArchivoJugador();
+      player.crearArchivoAlumnos();
       cout <<  "Archivo creado satisfactoriamente, pruebe de nuevo";
       exit ( 1 );
 
     }
-    return jugadorEntradaSalida;
+    return alumnosEntradaSalida;
 }
 
-void jugador::busquedaRegistro(fstream &actualizarArchivo)
+/*void alumnos::busquedaRegistro(fstream &actualizarArchivo)
 {
 
        int numeroId = obtenerId( "Escriba el ID del jugador a buscar" );
@@ -629,6 +734,6 @@ if ( player.obtenerNumeroId() != 0 ) {
       cerr << "El ID #" << numeroId
          << " aun no existe" << endl;
 
-}
+}*/
 
 
