@@ -30,7 +30,7 @@ using namespace std;
 class alumnos
 {
     public:
-        alumnos( int = 0, string = "", string = "", string = "", string = "", string = "", string = "", string = "", int = 0, string = "", int = 0, string = "", int = 0);
+        alumnos( int = 0, string = "", string = "", string = "", string = "", string = "", string = "", int = 0, string = "", int = 0, string = "", int = 0, string = "", int = 0);
 
         void establecerId( int );
         int obtenerNumeroId() const;
@@ -54,6 +54,9 @@ class alumnos
 
         void establecerCarrera( string );
         string obtenerCarrera() const;
+
+        void establecerSolvencia( int );
+        int obtenerSolvencia() const;
 
         void establecerCurso1( string );
         string obtenerCurso1() const;
@@ -93,6 +96,7 @@ class alumnos
         char sede[ 17 ];
         char facultad[ 17 ];
         char carrera[ 17 ];
+        int solvencia;
         char aula[ 17 ];
         char curso1[ 17 ];
         char curso2[ 17 ];
