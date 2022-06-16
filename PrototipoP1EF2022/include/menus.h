@@ -6,8 +6,11 @@ class menus
 {
     public:
         menus();
-        virtual ~menus();
-
+        menuGeneral();
+        menuCatalogos();
+        menuProcesos();
+        menuInformes();
+        int opcion;
     protected:
 
     private:
