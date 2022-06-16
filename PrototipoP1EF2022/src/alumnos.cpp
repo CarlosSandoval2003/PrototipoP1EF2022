@@ -9,7 +9,7 @@ using std::string;
 #include <cstdlib>
 
 alumnos::alumnos(int valorNumeroId,
-   string valorApellido, string valorNombre, string valorSede, string valorAula, string valorFacultad, string valorCarrera, int valorSolvencia, string valorCurso1, int valorNota1,
+   string valorApellido, string valorNombre, string valorSede, string valorAula, string valorFacultad, string valorCarrera, string valorSolvencia, string valorCurso1, int valorNota1,
    string valorCurso2, int valorNota2, string valorCurso3, int valorNota3)
 {
    establecerId( valorNumeroId );
@@ -154,15 +154,22 @@ void alumnos::establecerCarrera( string carreraString )
 
 }
 
-int alumnos::obtenerSolvencia() const
+string alumnos::obtenerSolvencia() const
 {
    return solvencia;
 
 }
 
-void alumnos::establecerSolvencia( int valorSolvencia )
+void alumnos::establecerSolvencia( string solvenciaString )
 {
-   solvencia = valorSolvencia;
+   // copiar a lo más 15 caracteres de la cadena en apellido
+   const char *valorSolvencia = solvenciaString.data();
+   int longitud = strlen( valorSolvencia );
+   longitud = ( longitud < 18 ? longitud : 17 );
+   strncpy( solvencia, valorSolvencia, longitud );
+
+   // anexar caracter nulo al apellido
+   solvencia[ longitud ] = '\0';
 
 }
 
@@ -275,7 +282,7 @@ void alumnos::imprimirRegistro( fstream &leerDeArchivo )
 
    archivoImprimirSalida << left << setw( 10 ) << "ID" << setw( 16 )
        << "Apellido" << setw( 17 ) << "Nombre"
-       <<setw( 18 )<<"Sede"<<setw( 18 )<<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 10 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 10 )<<"Nota"
+       <<setw( 18 )<<"Sede"<<setw( 18 )<<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 12 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 10 )<<"Nota"
        <<setw( 18 )<<"Curso 2"<<setw( 10 )<<"Nota"<<setw( 18 )<<"Curso 3"<<setw( 10 )<<"Nota"<<endl;
 
    // colocar el apuntador de posición de archivo al principio del archivo de registros
@@ -320,7 +327,7 @@ void alumnos::actualizarRegistro( fstream &actualizarArchivo )
    if ( player.obtenerNumeroId() != 0 ) {
 
          cout << left << setw( 10 ) << "ID" << setw( 16 )<< "Apellido" << setw( 17 ) << "Nombre"<<setw( 18 )<<"Sede"<<setw( 18 )
-         <<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 10 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 10 )<<"Nota"
+         <<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 12 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 10 )<<"Nota"
          <<setw( 18 )<<"Curso 2"<<setw( 10 )<<"Nota"<<setw( 18 )<<"Curso 3"<<setw( 10 )<<"Nota"<<endl;
       mostrarLinea( cout, player );
 
@@ -382,8 +389,8 @@ void alumnos::actualizarRegistro( fstream &actualizarArchivo )
             player.establecerCarrera( cambioCarrera );}
             break;
         case 7:
-            {cout << "Ingrese la nueva Solvencia (1=Solvente, 2=Insolvente): "<<endl;
-            int cambioSolvencia;
+            {cout << "Ingrese la nueva Solvencia: "<<endl;
+            string cambioSolvencia;
             cin >> cambioSolvencia;
             player.establecerSolvencia(cambioSolvencia);}
             break;
@@ -431,7 +438,7 @@ void alumnos::actualizarRegistro( fstream &actualizarArchivo )
 	}
 
       cout << left << setw( 10 ) << "ID" << setw( 16 )<< "Apellido" << setw( 17 ) << "Nombre"<<setw( 18 )<<"Sede"<<setw( 18 )
-         <<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 4 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 4 )<<"Nota"
+         <<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 12 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 4 )<<"Nota"
          <<setw( 18 )<<"Curso 2"<<setw( 4 )<<"Nota"<<setw( 18 )<<"Curso 3"<<setw( 4 )<<"Nota"<<endl;
       mostrarLinea( cout, player );
 
@@ -477,7 +484,7 @@ void alumnos::nuevoRegistro( fstream &insertarEnArchivo )
         char sede[ 17 ];
         char facultad[ 17 ];
         char carrera[ 17 ];
-        int solvencia;
+        char solvencia[ 17 ];
         char aula[ 17 ];
         char curso1[ 17 ];
         char curso2[ 17 ];
@@ -500,8 +507,8 @@ void alumnos::nuevoRegistro( fstream &insertarEnArchivo )
       cin >> setw(17)>> facultad;
       cout << "Escriba la carrera: "<<endl;
       cin >> setw(17)>> carrera;
-      cout << "¿Está solvente? 1=Si, 2=No"<<endl;
-      cin >> setw(4)>> solvencia;
+      cout << "Escriba el estado de la solvencia"<<endl;
+      cin >> setw(12)>> solvencia;
       cout << "Escriba el curso 1: "<<endl;
       cin >> setw(17)>> curso1;
       cout << "Escriba la nota del curso 1: "<<endl;
@@ -529,6 +536,7 @@ void alumnos::nuevoRegistro( fstream &insertarEnArchivo )
       player.establecerCurso3( curso3 );
       player.establecerNota3( nota3 );
       player.establecerId( numeroId );
+      player.establecerSolvencia(solvencia);
 
       // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
       insertarEnArchivo.seekp( ( numeroId - 1 ) *
@@ -590,7 +598,7 @@ void alumnos::consultarRegistro( fstream &leerDeArchivo )
 {
 
    cout << left << setw( 10 ) << "ID" << setw( 16 )<< "Apellido" << setw( 17 ) << "Nombre"<<setw( 18 )<<"Sede"<<setw( 18 )
-         <<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 10 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 10 )<<"Nota 1"
+         <<"Aula"<<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 12 )<<"Solvencia"<<setw( 18 )<<"Curso 1"<<setw( 10 )<<"Nota 1"
          <<setw( 18 )<<"Curso 2"<<setw( 10 )<<"Nota 2"<<setw( 18 )<<"Curso 3"<<setw( 10 )<<"Nota 3"<<endl;
 
    // colocar el apuntador de posición de archivo al principio del archivo de registros
@@ -626,7 +634,7 @@ void alumnos::mostrarLinea( ostream &salida, const alumnos &registro )
           << setw( 17 ) << registro.obtenerAula().data()
           << setw( 17 ) << registro.obtenerFacultad().data()
           << setw( 17 ) << registro.obtenerCarrera().data()
-          << setw( 10 ) << registro.obtenerSolvencia()
+          << setw( 12 ) << registro.obtenerSolvencia().data()
           << setw( 17 ) << registro.obtenerCurso1().data()
           << setw( 10 ) << registro.obtenerNota1()
           << setw( 17 ) << registro.obtenerCurso2().data()
@@ -644,7 +652,7 @@ void alumnos::mostrarLineaPantalla( const alumnos &registro )
           << setw( 17 ) << registro.obtenerAula().data()
           << setw( 17 ) << registro.obtenerFacultad().data()
           << setw( 17 ) << registro.obtenerCarrera().data()
-          << setw( 10 ) << registro.obtenerSolvencia()
+          << setw( 12 ) << registro.obtenerSolvencia().data()
           << setw( 17 ) << registro.obtenerCurso1().data()
           << setw( 10 ) << registro.obtenerNota1()
           << setw( 17 ) << registro.obtenerCurso2().data()
@@ -792,5 +800,117 @@ if ( empleado.obtenerNumeroId() != 0 ) {
    else
       cerr << "El ID #" << numeroId
          << " aun no existe" << endl;
+
+}
+
+void alumnos::mostrarLinea4( ostream &salida, const alumnos &registro )
+{
+   salida << left << setw( 10 ) << registro.obtenerNumeroId()
+          << setw( 15 ) << registro.obtenerApellido().data()
+          << setw( 16 ) << registro.obtenerNombre().data()
+          << setw( 17 ) << registro.obtenerSede().data()
+          << setw( 17 ) << registro.obtenerFacultad().data()
+          << setw( 17 ) << registro.obtenerCarrera().data()
+          << setw( 12 ) << registro.obtenerSolvencia().data()<<endl;
+
+} // fin de la función mostrarLinea
+
+void alumnos::mostrarLinea5( ostream &salida, const alumnos &registro )
+{
+    int note1 = registro.obtenerNota1();
+    int note2 = registro.obtenerNota2();
+    int note3 = registro.obtenerNota3();
+    int promedio = (note1+note2+note3)/3;
+   salida << left << setw( 10 ) << registro.obtenerNumeroId()
+          << setw( 15 ) << registro.obtenerApellido().data()
+          << setw( 16 ) << registro.obtenerNombre().data()
+          << setw( 17 ) << registro.obtenerFacultad().data()
+          << setw( 17 ) << registro.obtenerCarrera().data()
+          << setw( 17 ) << registro.obtenerCurso1().data()
+          << setw( 10 ) << registro.obtenerNota1()
+          << setw( 17 ) << registro.obtenerCurso2().data()
+          << setw( 10 ) << registro.obtenerNota2()
+          << setw( 17 ) << registro.obtenerCurso3().data()
+          << setw( 10 ) << registro.obtenerNota3()
+          << setw( 10 ) << promedio <<endl;
+
+} // fin de la función mostrarLinea
+
+void alumnos::imprimirRegistro2( fstream &leerDeArchivo )
+{
+   // crear archivo de texto
+   ofstream archivoImprimirSalida( "InformeSolvencia.txt", ios::out );
+
+   // salir del programa si ofstream no puede crear el archivo
+   if ( !archivoImprimirSalida ) {
+      cerr << "No se pudo crear el archivo." << endl;
+      exit( 1 );
+
+   } // fin de instrucción if
+
+   archivoImprimirSalida << left << setw( 10 ) << "ID" << setw( 16 )
+       << "Apellido" << setw( 17 ) << "Nombre"
+       <<setw( 18 )<<"Sede"<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 12 )<<"Solvencia"<<endl;
+
+   // colocar el apuntador de posición de archivo al principio del archivo de registros
+   leerDeArchivo.seekg( 0 );
+
+   // leer el primer registro del archivo de registros
+   alumnos player;
+   leerDeArchivo.read( reinterpret_cast< char * >( &player ),
+      sizeof( alumnos ) );
+
+   // copiar todos los registros del archivo de registros en el archivo de texto
+   while ( !leerDeArchivo.eof() ) {
+
+      // escribir un registro individual en el archivo de texto
+      if ( player.obtenerNumeroId() != 0 )
+         mostrarLinea4( archivoImprimirSalida, player );
+
+      // leer siguiente registro del archivo de registros
+      leerDeArchivo.read( reinterpret_cast< char * >( &player),
+         sizeof( alumnos ) );
+
+   } // fin de instrucción while
+
+}
+
+void alumnos::imprimirRegistro3( fstream &leerDeArchivo )
+{
+   // crear archivo de texto
+   ofstream archivoImprimirSalida( "InformeDeNotas.txt", ios::out );
+
+   // salir del programa si ofstream no puede crear el archivo
+   if ( !archivoImprimirSalida ) {
+      cerr << "No se pudo crear el archivo." << endl;
+      exit( 1 );
+
+   } // fin de instrucción if
+
+   archivoImprimirSalida << left << setw( 10 ) << "ID" << setw( 16 )
+       << "Apellido" << setw( 17 ) << "Nombre"
+       <<setw( 18 )<<"Facultad"<<setw( 18 )<<"Carrera"<<setw( 12 )<<"Curso 1"<<setw( 10 )<<"Nota"
+       <<setw( 18 )<<"Curso 2"<<setw( 10 )<<"Nota"<<setw( 18 )<<"Curso 3"<<setw( 10 )<<"Nota"<<setw(10)<<"Promedio"<<endl;
+
+   // colocar el apuntador de posición de archivo al principio del archivo de registros
+   leerDeArchivo.seekg( 0 );
+
+   // leer el primer registro del archivo de registros
+   alumnos player;
+   leerDeArchivo.read( reinterpret_cast< char * >( &player ),
+      sizeof( alumnos ) );
+
+   // copiar todos los registros del archivo de registros en el archivo de texto
+   while ( !leerDeArchivo.eof() ) {
+
+      // escribir un registro individual en el archivo de texto
+      if ( player.obtenerNumeroId() != 0 )
+         mostrarLinea5( archivoImprimirSalida, player );
+
+      // leer siguiente registro del archivo de registros
+      leerDeArchivo.read( reinterpret_cast< char * >( &player),
+         sizeof( alumnos ) );
+
+   } // fin de instrucción while
 
 }

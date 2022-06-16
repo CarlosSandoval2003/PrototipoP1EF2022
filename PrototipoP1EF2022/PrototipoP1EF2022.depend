@@ -51,3 +51,57 @@
 1655406834 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\usuarios.h
 	<iostream>
 
+1655407086 source:c:\users\jawic\desktop\exmamenfinal\prototipop1ef2022\prototipop1ef2022\main.cpp
+	<iostream>
+	<menus.h>
+	<usuarios.h>
+	<ctime>
+	<vector>
+	<fstream>
+	<iomanip>
+	<cstdlib>
+
+1655409594 c:\users\jawic\desktop\exmamenfinal\prototipop1ef2022\prototipop1ef2022\include\menus.h
+
+1655407086 c:\users\jawic\desktop\exmamenfinal\prototipop1ef2022\prototipop1ef2022\include\usuarios.h
+	<iostream>
+
+1655410327 source:c:\users\jawic\desktop\exmamenfinal\prototipop1ef2022\prototipop1ef2022\src\alumnos.cpp
+	"alumnos.h"
+	<iostream>
+	<conio.h>
+	<cstring>
+	<fstream>
+	<iomanip>
+	<cstdlib>
+
+1655410266 c:\users\jawic\desktop\exmamenfinal\prototipop1ef2022\prototipop1ef2022\include\alumnos.h
+	<iostream>
+	<conio.h>
+	<fstream>
+	<iomanip>
+	<cstdlib>
+
+1655409594 source:c:\users\jawic\desktop\exmamenfinal\prototipop1ef2022\prototipop1ef2022\src\menus.cpp
+	<iostream>
+	<conio.h>
+	"menus.h"
+	"alumnos.h"
+	"reportes.h"
+	<ctime>
+	<vector>
+	<fstream>
+	<iomanip>
+	<cstdlib>
+
+1655409594 c:\users\jawic\desktop\exmamenfinal\prototipop1ef2022\prototipop1ef2022\include\reportes.h
+
+1655410452 source:c:\users\jawic\desktop\exmamenfinal\prototipop1ef2022\prototipop1ef2022\src\reportes.cpp
+	"reportes.h"
+	"alumnos.h"
+
+1655407086 source:c:\users\jawic\desktop\exmamenfinal\prototipop1ef2022\prototipop1ef2022\src\usuarios.cpp
+	"usuarios.h"
+	<conio.h>
+	<iostream>
+

@@ -9,8 +9,6 @@ class menus
         menuGeneral();
         menuCatalogos();
         menuProcesos();
-        menuInformes();
-        menuReportes();
         int opcion;
     protected:
 

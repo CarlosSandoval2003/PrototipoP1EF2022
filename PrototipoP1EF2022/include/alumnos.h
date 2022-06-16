@@ -30,7 +30,7 @@ using namespace std;
 class alumnos
 {
     public:
-        alumnos( int = 0, string = "", string = "", string = "", string = "", string = "", string = "", int = 0, string = "", int = 0, string = "", int = 0, string = "", int = 0);
+        alumnos( int = 0, string = "", string = "", string = "", string = "", string = "", string = "", string = "", string = "", int = 0, string = "", int = 0, string = "", int = 0);
 
         void establecerId( int );
         int obtenerNumeroId() const;
@@ -55,8 +55,8 @@ class alumnos
         void establecerCarrera( string );
         string obtenerCarrera() const;
 
-        void establecerSolvencia( int );
-        int obtenerSolvencia() const;
+        void establecerSolvencia( string );
+        string obtenerSolvencia() const;
 
         void establecerCurso1( string );
         string obtenerCurso1() const;
@@ -77,12 +77,16 @@ class alumnos
         int obtenerNota3() const;
 
         void imprimirRegistro( fstream& );
+        void imprimirRegistro2( fstream& );
+        void imprimirRegistro3( fstream& );
         void actualizarRegistro( fstream& );
         void nuevoRegistro( fstream& );
         void eliminarRegistro( fstream& );
         void mostrarLinea( ostream&, const alumnos & );
         void mostrarLinea2( ostream&, const alumnos & );
         void mostrarLinea3( ostream&, const alumnos & );
+        void mostrarLinea4( ostream&, const alumnos & );
+        void mostrarLinea5( ostream&, const alumnos & );
         int obtenerId( const char * const );
         void crearArchivoAlumnos();
         void consultarRegistro( fstream& );
@@ -99,7 +103,7 @@ class alumnos
         char sede[ 17 ];
         char facultad[ 17 ];
         char carrera[ 17 ];
-        int solvencia;
+        char solvencia[ 17 ];
         char aula[ 17 ];
         char curso1[ 17 ];
         char curso2[ 17 ];

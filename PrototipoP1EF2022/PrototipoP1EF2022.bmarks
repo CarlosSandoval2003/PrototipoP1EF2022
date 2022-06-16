@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <BrowseTracker_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="include\alumnos.h" open="1" top="0" tabpos="6">
-		<Cursor position="2331" topLine="42" />
+	<File name="include\alumnos.h" open="1" top="0" tabpos="4">
+		<Cursor position="2526" topLine="66" />
+		<BrowseMarks positions="" />
+	</File>
+	<File name="src\reportes.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="1055" topLine="33" />
 		<BrowseMarks positions="" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
 		<BrowseMarks positions="" />
 	</File>
-	<File name="src\alumnos.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="6480" topLine="275" />
-		<BrowseMarks positions="9524,19376" />
+	<File name="include\reportes.h" open="1" top="0" tabpos="6">
+		<Cursor position="152" topLine="0" />
+		<BrowseMarks positions="" />
+	</File>
+	<File name="src\alumnos.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="28543" topLine="846" />
+		<BrowseMarks positions="9845,19190,19740" />
 	</File>
 	<File name="src\menus.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="3353" topLine="115" />
+		<Cursor position="2687" topLine="109" />
+		<BrowseMarks positions="" />
+	</File>
+	<File name="include\menus.h" open="1" top="0" tabpos="7">
+		<Cursor position="158" topLine="0" />
 		<BrowseMarks positions="" />
 	</File>
 </BrowseTracker_layout_file>
