@@ -8,9 +8,9 @@
 	<iomanip>
 	<cstdlib>
 
-1655405349 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\menus.h
+1655406555 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\menus.h
 
-1655406282 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\alumnos.cpp
+1655406555 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\alumnos.cpp
 	"alumnos.h"
 	<iostream>
 	<conio.h>
@@ -19,14 +19,14 @@
 	<iomanip>
 	<cstdlib>
 
-1655406120 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\alumnos.h
+1655406555 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\alumnos.h
 	<iostream>
 	<conio.h>
 	<fstream>
 	<iomanip>
 	<cstdlib>
 
-1655406298 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\menus.cpp
+1655406555 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\menus.cpp
 	<iostream>
 	<conio.h>
 	"menus.h"
@@ -38,13 +38,16 @@
 	<iomanip>
 	<cstdlib>
 
-1655405349 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\reportes.h
+1655406555 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\reportes.h
 
-1655405349 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\reportes.cpp
+1655406555 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\reportes.cpp
 	"reportes.h"
 
-1655405349 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\usuarios.cpp
+1655406834 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\usuarios.cpp
 	"usuarios.h"
+	<conio.h>
+	<iostream>
 
-1655405349 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\usuarios.h
+1655406834 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\usuarios.h
+	<iostream>
 

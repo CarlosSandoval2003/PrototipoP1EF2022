@@ -1,5 +1,6 @@
 #include <iostream>
 #include <menus.h>
+#include <usuarios.h>
 using std::cout;
 using std::cerr;
 using std::cin;
@@ -29,15 +30,13 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     menus menuG;
-    menuG.menuGeneral();
-
     //Llamado a clase Usuarios para el Login
-    //bool accesoUsuarios;
-    //Usuarios usuarioRegistrado;
-    //accesoUsuarios=usuarioRegistrado.loginUsuarios();
-    //if (accesoUsuarios){menuG.menuGeneral();}
-  //  system("cls");
-   // cout<<"** REGRESE PRONTO **";
+    bool accesoUsuarios;
+    usuarios usuarioRegistrado;
+    accesoUsuarios=usuarioRegistrado.loginUsuarios();
+    if (accesoUsuarios){menuG.menuGeneral();}
+    system("cls");
+    cout<<"** REGRESE PRONTO **";
 
     return 0;
 
