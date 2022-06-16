@@ -149,6 +149,7 @@ menus::menuProcesos()
 {
     //Creacion de un objeto de la clase alumnos
     alumnos a1;
+    fstream alumnosEntradaSalida = a1.inicioArchivo();
     int choice;
 	char x;
 	do
@@ -172,10 +173,14 @@ menus::menuProcesos()
     switch(choice)
     {
     case 1:
-        cout<<"Boleta Inscripcion"<<endl;
+        a1.busquedaRegistro2(alumnosEntradaSalida);
+        cout << "" << endl;
+        cout << "Presiona enter para continuar" << endl;
 		break;
 	case 2:
-	    cout<<"Boleta Solvencia"<<endl;
+	    a1.busquedaRegistro2(alumnosEntradaSalida);
+        cout << "" << endl;
+        cout << "Presiona enter para continuar" << endl;
 		break;
 	case 3:
 	    cout<<"Acta de Notas"<<endl;
@@ -186,6 +191,7 @@ menus::menuProcesos()
 	default:
 		cout<<"\n\t\t\t Opcion invalida...Por favor prueba otra vez..";
 	}
+	alumnosEntradaSalida.clear(); // reinicializar indicador de fin de archivo
     getch();
     }while(choice!= 4);
 }
