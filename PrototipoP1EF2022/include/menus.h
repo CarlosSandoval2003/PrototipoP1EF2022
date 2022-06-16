@@ -10,6 +10,7 @@ class menus
         menuCatalogos();
         menuProcesos();
         menuInformes();
+        menuReportes();
         int opcion;
     protected:
 
