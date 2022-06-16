@@ -81,11 +81,15 @@ class alumnos
         void nuevoRegistro( fstream& );
         void eliminarRegistro( fstream& );
         void mostrarLinea( ostream&, const alumnos & );
+        void mostrarLinea2( ostream&, const alumnos & );
+        void mostrarLinea3( ostream&, const alumnos & );
         int obtenerId( const char * const );
         void crearArchivoAlumnos();
         void consultarRegistro( fstream& );
         void mostrarLineaPantalla( const alumnos &);
         fstream inicioArchivo();
+        void busquedaRegistro(fstream&);
+        void busquedaRegistro2(fstream&);
 
 
     private:

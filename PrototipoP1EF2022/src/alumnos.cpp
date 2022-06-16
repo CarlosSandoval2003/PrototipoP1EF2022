@@ -703,37 +703,94 @@ fstream alumnos::inicioArchivo(){
     return alumnosEntradaSalida;
 }
 
-/*void alumnos::busquedaRegistro(fstream &actualizarArchivo)
+void alumnos::mostrarLinea2( ostream &salida, const alumnos &registro )
 {
+     cout<<"_______________________________________________________________________________"<<endl;
+     cout<<"\t\t\t"<<endl;
+	 cout<<"\t\t\t .   Generacion de voucher   ."<<endl;
+	 cout<<"_______________________________________________________________________________"<<endl;
+     cout<<"\t Banco Nacional "; cout<<"\t\t\t ID alumno: " <<registro.obtenerNumeroId()<<endl;
+     cout<<"\t\t\t"<<endl;
+     cout<<"\t Apellido: "<<registro.obtenerApellido().data(); cout<<"\t\t\t Nombre: "<< registro.obtenerNombre().data()<<endl;
+     cout<<"\t\t\t"<<endl;
+     cout<<"\t Pago Mensualidad: Q900" << endl;
+     cout<<"_______________________________________________________________________________"<<endl;
+     cout<<"\t\t\t"<<endl;
+     cout<<"\t\t\t Firma______________"<< endl;
+}
 
-       int numeroId = obtenerId( "Escriba el ID del jugador a buscar" );
+void alumnos::mostrarLinea3( ostream &salida, const alumnos &registro )
+{
+     cout<<"_______________________________________________________________________________"<<endl;
+     cout<<"\t\t\t"<<endl;
+	 cout<<"\t\t\t .   Generacion de voucher Inscripcion  ."<<endl;
+	 cout<<"_______________________________________________________________________________"<<endl;
+     cout<<"\t Banco Nacional "; cout<<"\t\t\t ID alumno: " <<registro.obtenerNumeroId()<<endl;
+     cout<<"\t\t\t"<<endl;
+     cout<<"\t Apellido: "<<registro.obtenerApellido().data(); cout<<"\t\t\t Nombre: "<< registro.obtenerNombre().data()<<endl;
+     cout<<"\t\t\t"<<endl;
+     cout<<"\t Pago Inscripcion: Q1000.00" << endl;
+     cout<<"_______________________________________________________________________________"<<endl;
+     cout<<"\t\t\t El alumno ha sido inscrito para el ciclo escolar 20___"<<endl;
+     cout<<"\t\t\t"<<endl;
+     cout<<"\t\t\t Firma______________"<< endl;
+}
+void alumnos::busquedaRegistro(fstream &actualizarArchivo)
+{
+//Se obtiene el ID a buscar
+       int numeroId = obtenerId( "Escriba el ID del alumno a generar voucher " );
 
    // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+
    actualizarArchivo.seekg(
-      ( numeroId - 1 ) * sizeof( jugador ) );
+      ( numeroId - 1 ) * sizeof( alumnos ) );
 
    // leer el primer registro del archivo
-   jugador player;
-   actualizarArchivo.read( reinterpret_cast< char * >( &player ),
-      sizeof( jugador ) );
-if ( player.obtenerNumeroId() != 0 ) {
-      // actualizar el saldo del registro
-      cout << left << setw( 10 ) << "ID" << setw( 16 )
-       << "Apellido" << setw( 17 ) << "Nombre"
-       << setw( 10 ) <<"Edad"<<setw( 18 )<<"Equipo"<<setw( 5 )<<"Posicion" << endl;
-      mostrarLinea( cout, player );
-
+   alumnos empleado;
+   actualizarArchivo.read( reinterpret_cast< char * >( &empleado ),
+      sizeof( alumnos ) );
+if ( empleado.obtenerNumeroId() != 0 ) {
+     mostrarLinea2( cout, empleado );
       // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+
       actualizarArchivo.seekp(
-         ( numeroId - 1 ) * sizeof( jugador ) );
+         ( numeroId - 1 ) * sizeof( alumnos ) );
 
-   } // fin de instrucción if
+   }
 
-   // mostrar error si la cuenta no existe
+   // mostrar error si el ID no existe
    else
       cerr << "El ID #" << numeroId
          << " aun no existe" << endl;
 
-}*/
+}
 
+void alumnos::busquedaRegistro2(fstream &actualizarArchivo)
+{
+//Se obtiene el ID a buscar
+       int numeroId = obtenerId( "Escriba el ID del alumno a generar voucher " );
 
+   // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+
+   actualizarArchivo.seekg(
+      ( numeroId - 1 ) * sizeof( alumnos ) );
+
+   // leer el primer registro del archivo
+   alumnos empleado;
+   actualizarArchivo.read( reinterpret_cast< char * >( &empleado ),
+      sizeof( alumnos ) );
+if ( empleado.obtenerNumeroId() != 0 ) {
+     mostrarLinea3( cout, empleado );
+      // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+
+      actualizarArchivo.seekp(
+         ( numeroId - 1 ) * sizeof( alumnos ) );
+
+   }
+
+   // mostrar error si el ID no existe
+   else
+      cerr << "El ID #" << numeroId
+         << " aun no existe" << endl;
+
+}

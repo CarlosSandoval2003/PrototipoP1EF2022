@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1655405349 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\main.cpp
+	<iostream>
+	<menus.h>
+	<ctime>
+	<vector>
+	<fstream>
+	<iomanip>
+	<cstdlib>
+
+1655405349 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\menus.h
+
+1655406282 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\alumnos.cpp
+	"alumnos.h"
+	<iostream>
+	<conio.h>
+	<cstring>
+	<fstream>
+	<iomanip>
+	<cstdlib>
+
+1655406120 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\alumnos.h
+	<iostream>
+	<conio.h>
+	<fstream>
+	<iomanip>
+	<cstdlib>
+
+1655406298 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\menus.cpp
+	<iostream>
+	<conio.h>
+	"menus.h"
+	"alumnos.h"
+	"reportes.h"
+	<ctime>
+	<vector>
+	<fstream>
+	<iomanip>
+	<cstdlib>
+
+1655405349 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\reportes.h
+
+1655405349 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\reportes.cpp
+	"reportes.h"
+
+1655405349 source:c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\src\usuarios.cpp
+	"usuarios.h"
+
+1655405349 c:\users\jawic\desktop\examenfinal\prototipop1ef2022\prototipop1ef2022\include\usuarios.h
+
